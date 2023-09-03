@@ -1,1 +1,42 @@
-YVcxd2IzSjBJR0Z5WjNCaGNuTmxDbVp5YjIwZ2NIbDBkV0psSUdsdGNHOXlkQ0JaYjNWVWRXSmxDZ3BXU1VSRlQxOVRRVlpGWDBSSlVrVkRWRTlTV1NBOUlDSXVMM1pwWkdWdmN5SUtRVlZFU1U5ZlUwRldSVjlFU1ZKRlExUlBVbGtnUFNBaUxpOWhkV1JwYnlJS0NtUmxaaUJrYjNkdWJHOWhaQ2gyYVdSbGIxOTFjbXdwT2dvZ0lDQWdkbWxrWlc4Z1BTQlpiM1ZVZFdKbEtIWnBaR1Z2WDNWeWJDa0tJQ0FnSUhacFpHVnZJRDBnZG1sa1pXOHVjM1J5WldGdGN5NW5aWFJmYUdsbmFHVnpkRjl5WlhOdmJIVjBhVzl1S0NrS0NpQWdJQ0IwY25rNkNpQWdJQ0FnSUNBZ2RtbGtaVzh1Wkc5M2JteHZZV1FvVmtsRVJVOWZVMEZXUlY5RVNWSkZRMVJQVWxrcENpQWdJQ0JsZUdObGNIUTZDaUFnSUNBZ0lDQWdjSEpwYm5Rb0lrWmhhV3hsWkNCMGJ5QmtiM2R1Ykc5aFpDQjJhV1JsYnlJcENnb2dJQ0FnY0hKcGJuUW9JblpwWkdWdklIZGhjeUJrYjNkdWJHOWhaR1ZrSUhOMVkyTmxjM05tZFd4c2VTSXBDZ3BrWldZZ1pHOTNibXh2WVdSZllYVmthVzhvZG1sa1pXOWZkWEpzS1RvS0lDQWdJSFpwWkdWdklEMGdXVzkxVkhWaVpTaDJhV1JsYjE5MWNtd3BDaUFnSUNCaGRXUnBieUE5SUhacFpHVnZMbk4wY21WaGJYTXVabWxzZEdWeUtHOXViSGxmWVhWa2FXOGdQU0JVY25WbEtTNW1hWEp6ZENncENnb2dJQ0FnZEhKNU9nb2dJQ0FnSUNBZ0lHRjFaR2x2TG1SdmQyNXNiMkZrS0VGVlJFbFBYMU5CVmtWZlJFbFNSVU5VVDFKWktRb2dJQ0FnWlhoalpYQjBPZ29nSUNBZ0lDQWdJSEJ5YVc1MEtDSkdZV2xzWldRZ2RHOGdaRzkzYm14dllXUWdZWFZrYVc4aUtRb0tJQ0FnSUhCeWFXNTBLQ0poZFdScGJ5QjNZWE1nWkc5M2JteHZZV1JsWkNCemRXTmpaWE56Wm5Wc2JIa2lLUW9LQ25CeWFXNTBLQ0pjYmlJcENuQnlhVzUwS0NKUWVYUjFZbVVnWkc5M2JteHZZV1JsY2lBb1lua2dSSFYyYVhveUtTSXBDZ3AzYUdsc1pTQlVjblZsT2dvZ0lDQWdjSEpwYm5Rb0lseHVJaWtLSUNBZ0lHUnZkMjVzYjJGa0tHbHVjSFYwS0NKSmJuTmxjblFnWVNCMmFXUmxieUIxY213NklDSXBLUT09
+import subprocess
+import sys
+
+print("Installing modules...")
+
+subprocess.check_call([sys.executable, "-m", "pip", "install", "pytube"])
+
+import argparse
+from pytube import YouTube
+
+VIDEO_SAVE_DIRECTORY = "./videos"
+AUDIO_SAVE_DIRECTORY = "./audio"
+
+def download(video_url):
+    video = YouTube(video_url)
+    video = video.streams.get_highest_resolution()
+
+    try:
+        video.download(VIDEO_SAVE_DIRECTORY)
+    except:
+        print("Failed to download video")
+
+    print("video was downloaded successfully")
+
+def download_audio(video_url):
+    video = YouTube(video_url)
+    audio = video.streams.filter(only_audio = True).first()
+
+    try:
+        audio.download(AUDIO_SAVE_DIRECTORY)
+    except:
+        print("Failed to download audio")
+
+    print("audio was downloaded successfully")
+
+
+print("\n")
+print("Pytube downloader (by Duviz2)")
+
+while True:
+    print("\n")
+    download(input("Insert a video url: "))
