@@ -1,3 +1,4 @@
+[Buy me a coffee for 1$](https://py.pl/1s1o99)
 # Python video downloader (pytube downloader)
 A simple python youtube video downloader for that people that **HATE** ads when downloading videos on third party websites
 ## How to use
